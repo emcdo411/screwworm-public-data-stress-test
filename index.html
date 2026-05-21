@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>King Ranch NWS Stress Test | MBEL Scenario Intelligence</title>
+  <meta name="description" content="Public-signal MBEL scenario stress test for New World Screwworm risk, cattle economics, operational readiness, brand exposure, and enterprise decision timing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #05040a;
+      --black-2: #0b0714;
+      --black-3: #120d20;
+      --purple: #4b225e;
+      --purple-2: #6d3f91;
+      --purple-3: #a884d4;
+      --periwinkle: #6e7fd0;
+      --periwinkle-2: #9ba9ec;
+      --periwinkle-3: #dfe4ff;
+      --white: #f9f7ff;
+      --muted: rgba(249,247,255,0.68);
+      --dim: rgba(249,247,255,0.38);
+      --line: rgba(255,255,255,0.10);
+      --line-accent: rgba(155,169,236,0.38);
+      --red: #d86a8d;
+      --amber: #c49b5e;
+      --green: #8dd6b4;
+      --shadow: 0 30px 100px rgba(0,0,0,0.52);
+      --mono: 'JetBrains Mono', monospace;
+      --display: 'Bebas Neue', sans-serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--sans);
+      background:
+        radial-gradient(circle at 14% 8%, rgba(110,127,208,0.24), transparent 26%),
+        radial-gradient(circle at 88% 12%, rgba(75,34,94,0.34), transparent 34%),
+        linear-gradient(135deg, #05040a 0%, #0b0714 48%, #211033 100%);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(155,169,236,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(155,169,236,0.05) 1px, transparent 1px);
+      background-size: 54px 54px;
+      pointer-events: none;
+      z-index: 0;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85), transparent 88%);
+    }
+
+    a { color: inherit; }
+    .shell { position: relative; z-index: 2; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(5,4,10,0.86);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 13px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: max-content;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 4px;
+      background: var(--periwinkle);
+      color: var(--black);
+      font-family: var(--mono);
+      font-weight: 900;
+      box-shadow: 0 0 28px rgba(155,169,236,0.34);
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .brand-copy span {
+      display: block;
+      margin-top: 2px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--dim);
+    }
+
+    .top-links {
+      display: flex;
+      gap: 9px;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .top-links a {
+      text-decoration: none;
+      border: 1px solid var(--line);
+      padding: 9px 11px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+    }
+
+    .hero {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 78px 24px 46px;
+      display: grid;
+      grid-template-columns: 1fr 0.88fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--periwinkle-2);
+    }
+
+    .kicker::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--periwinkle-2);
+      box-shadow: 0 0 16px rgba(155,169,236,0.5);
+    }
+
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(66px, 10vw, 134px);
+      line-height: 0.84;
+      letter-spacing: 0.012em;
+      text-transform: uppercase;
+      max-width: 820px;
+    }
+
+    h1 span {
+      color: var(--periwinkle-2);
+      text-shadow: 0 0 36px rgba(155,169,236,0.24);
+    }
+
+    .hero-sub {
+      margin-top: 24px;
+      max-width: 740px;
+      font-size: 17px;
+      line-height: 1.72;
+      color: var(--muted);
+    }
+
+    .tag-row {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .tag {
+      border: 1px solid var(--line-accent);
+      background: rgba(155,169,236,0.08);
+      color: var(--periwinkle-3);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      border-radius: 3px;
+    }
+
+    .hero-actions {
+      margin-top: 34px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: 0.2s ease;
+    }
+
+    .btn.primary {
+      background: var(--periwinkle-2);
+      color: var(--black);
+      box-shadow: 0 0 30px rgba(155,169,236,0.24);
+    }
+
+    .btn.ghost {
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.06); }
+
+    .brief-panel {
+      background: linear-gradient(180deg, rgba(18,13,32,0.98), rgba(5,4,10,0.98));
+      border: 1px solid var(--line-accent);
+      border-radius: 14px;
+      box-shadow: var(--shadow), 0 0 70px rgba(155,169,236,0.08);
+      overflow: hidden;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    .panel-header strong { color: var(--periwinkle-2); }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .metric {
+      background: var(--black-3);
+      padding: 24px 20px;
+      min-height: 138px;
+    }
+
+    .metric.big {
+      grid-column: span 2;
+      min-height: 178px;
+    }
+
+    .metric-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    .metric-value {
+      margin-top: 10px;
+      font-family: var(--display);
+      font-size: 76px;
+      line-height: 0.86;
+      color: var(--periwinkle-2);
+    }
+
+    .metric:not(.big) .metric-value { font-size: 56px; }
+
+    .metric-copy {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    section {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 58px 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 28px;
+      margin-bottom: 28px;
+    }
+
+    .section-num {
+      font-family: var(--mono);
+      color: var(--periwinkle-2);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-family: var(--display);
+      font-size: clamp(48px, 6vw, 86px);
+      line-height: 0.88;
+      letter-spacing: 0.012em;
+      text-transform: uppercase;
+    }
+
+    h2 span { color: var(--periwinkle-2); }
+
+    .section-note {
+      max-width: 470px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .visual-panel {
+      background: rgba(5,4,10,0.5);
+      border: 1px solid var(--line-accent);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .visual-panel img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .visual-caption {
+      padding: 16px 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    .scenario-grid, .stress-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(18,13,32,0.96), rgba(11,7,20,0.98));
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--periwinkle-2);
+      border-radius: 10px;
+      padding: 24px;
+      min-height: 240px;
+    }
+
+    .card .eyebrow {
+      font-family: var(--mono);
+      color: var(--periwinkle-2);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      font-size: 21px;
+      line-height: 1.2;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.62;
+    }
+
+    .card ul {
+      margin-top: 10px;
+      padding-left: 18px;
+    }
+
+    .model {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .calculator {
+      background: var(--black-3);
+      border: 1px solid var(--line-accent);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .control {
+      margin-bottom: 18px;
+    }
+
+    .control label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 8px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--periwinkle-2);
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .result {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .result span {
+      display: block;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 7px;
+    }
+
+    .result strong {
+      font-family: var(--display);
+      font-size: 36px;
+      line-height: 0.9;
+      color: var(--periwinkle-2);
+    }
+
+    .prompt-box {
+      background: #0a0612;
+      border: 1px solid var(--line-accent);
+      border-radius: 12px;
+      padding: 20px;
+      overflow: auto;
+      max-height: 520px;
+      box-shadow: inset 0 0 35px rgba(0,0,0,0.26);
+    }
+
+    pre {
+      white-space: pre-wrap;
+      color: #e8e5ff;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.58;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, rgba(155,169,236,0.14), rgba(5,4,10,0.98) 38%, rgba(26,12,42,0.98));
+      border: 1px solid var(--line-accent);
+      border-radius: 16px;
+      padding: 38px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 34px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .cta p {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 760px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      background: rgba(5,4,10,0.92);
+    }
+
+    .footer-inner {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 28px 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--dim);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      line-height: 1.65;
+      text-transform: uppercase;
+    }
+
+    .footer-inner b { color: var(--periwinkle-2); }
+
+    @media (max-width: 980px) {
+      .hero, .model, .cta { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .section-note { margin-top: 14px; }
+      .scenario-grid, .stress-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner, .hero, section, .footer-inner { padding-left: 18px; padding-right: 18px; }
+      h1 { font-size: 72px; }
+      h2 { font-size: 54px; }
+      .metric-grid, .result-grid { grid-template-columns: 1fr; }
+      .metric.big { grid-column: span 1; }
+      .cta { padding: 28px; }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="brand-mark">KR</div>
+          <div class="brand-copy">
+            <strong>NWS Enterprise Stress Test</strong>
+            <span>MBEL v1.6 · Conditional Pass · Public Signal Model</span>
+          </div>
+        </div>
+        <nav class="top-links">
+          <a href="#dashboard">Dashboard</a>
+          <a href="#stress">Stress Test</a>
+          <a href="#prompt">Prompt</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="kicker">New World Screwworm · Cattle Economics · Brand Trust</p>
+          <h1>The border is closed. The economic event <span>already started.</span></h1>
+          <p class="hero-sub">
+            This public-signal scenario model stress tests New World Screwworm as an enterprise-risk event, not only an animal-health issue.
+            The model connects cattle supply, operational readiness, wildlife interface, hunting/recreation exposure, and brand confidence.
+          </p>
+          <div class="tag-row">
+            <span class="tag">P6 Policy Consequence Modeling</span>
+            <span class="tag">Scenario Instantiation</span>
+            <span class="tag">ESIL Stress Test</span>
+            <span class="tag">Thompson Test</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn primary" href="#dashboard">Explore Dashboard</a>
+            <a class="btn ghost" href="#calculator">Stress the Assumptions</a>
+          </div>
+        </div>
+
+        <aside class="brief-panel">
+          <div class="panel-header">
+            <span>Executive Readiness Brief</span>
+            <strong>Live Model</strong>
+          </div>
+          <div class="metric-grid">
+            <div class="metric big">
+              <p class="metric-label">Core Decision</p>
+              <div class="metric-value">READY</div>
+              <p class="metric-copy">Preparedness converts unbounded surprise cost into bounded operational exposure.</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Readiness Cost</p>
+              <div class="metric-value">$350K-$750K</div>
+              <p class="metric-copy">Estimated bounded investment for readiness cell, surveillance SOP, veterinary alignment, and communication prep.</p>
+            </div>
+            <div class="metric">
+              <p class="metric-label">Unprepared Loss</p>
+              <div class="metric-value">$14M-$22M</div>
+              <p class="metric-copy">Scenario C range: late detection, mortality cascade, movement restriction, wildlife complications, brand exposure.</p>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="dashboard">
+        <div class="section-head">
+          <div>
+            <p class="section-num">01 · Executive Dashboard</p>
+            <h2>The model in <span>one view.</span></h2>
+          </div>
+          <p class="section-note">
+            The FRED-style dashboard turns the scenario economics into thresholds, triggers, value drivers, and a readiness-conversion curve.
+          </p>
+        </div>
+        <div class="visual-panel">
+          <img src="assets/king-ranch-nws-mbel-fred-dashboard.png" alt="King Ranch New World Screwworm MBEL FRED-style scenario dashboard" />
+          <div class="visual-caption">Public-signal model. Not an internal King Ranch financial audit. Directional decision intelligence designed for executive stress testing.</div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <p class="section-num">02 · Scenario Logic</p>
+            <h2>Three ways this event <span>can move.</span></h2>
+          </div>
+          <p class="section-note">
+            The stress test does not ask whether the model is impressive. It asks what breaks first if the assumptions are wrong.
+          </p>
+        </div>
+        <div class="scenario-grid">
+          <article class="card">
+            <div class="eyebrow">Scenario A · 45-55%</div>
+            <h3>Containment Holds</h3>
+            <p>Supply constriction supports price realization. Readiness remains a bounded insurance-like investment. Upside can be captured if operations stay prepared.</p>
+          </article>
+          <article class="card">
+            <div class="eyebrow">Scenario B · 25-35%</div>
+            <h3>South Texas Detection, Prepared</h3>
+            <p>The event is costly but contained. Early detection, crew training, veterinary alignment, and agency coordination prevent mortality cascade and brand confusion.</p>
+          </article>
+          <article class="card">
+            <div class="eyebrow">Scenario C · 15-25%</div>
+            <h3>South Texas Detection, Unprepared</h3>
+            <p>The event becomes enterprise risk: late detection, operational surge, movement restriction, wildlife exposure, hunting/recreation confidence loss, and brand exposure.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="calculator">
+        <div class="section-head">
+          <div>
+            <p class="section-num">03 · Interactive Stress Test</p>
+            <h2>Stress the <span>assumptions.</span></h2>
+          </div>
+          <p class="section-note">
+            Adjust the public-signal assumptions and watch how quickly the readiness case strengthens or weakens.
+          </p>
+        </div>
+        <div class="model">
+          <div class="calculator">
+            <div class="control">
+              <label>Herd baseline <span id="herdVal">42500</span></label>
+              <input id="herd" type="range" min="35000" max="50000" step="500" value="42500">
+            </div>
+            <div class="control">
+              <label>Affected head percentage <span id="affectedVal">8%</span></label>
+              <input id="affected" type="range" min="2" max="20" step="1" value="8">
+            </div>
+            <div class="control">
+              <label>Cost per affected head <span id="costVal">$650</span></label>
+              <input id="cost" type="range" min="200" max="1200" step="50" value="650">
+            </div>
+            <div class="control">
+              <label>Wildlife multiplier <span id="multVal">1.6x</span></label>
+              <input id="mult" type="range" min="1.1" max="2.5" step="0.1" value="1.6">
+            </div>
+            <div class="control">
+              <label>Brand / hunting exposure <span id="brandVal">$3.5M</span></label>
+              <input id="brand" type="range" min="500000" max="8000000" step="250000" value="3500000">
+            </div>
+            <div class="control">
+              <label>Readiness investment <span id="readyVal">$650K</span></label>
+              <input id="ready" type="range" min="350000" max="1000000" step="50000" value="650000">
+            </div>
+          </div>
+          <div class="brief-panel">
+            <div class="panel-header">
+              <span>Calculated Stress Output</span>
+              <strong>Directional</strong>
+            </div>
+            <div class="result-grid" style="padding: 20px;">
+              <div class="result"><span>Affected Head Count</span><strong id="affectedHead">3,400</strong></div>
+              <div class="result"><span>Operational Cost</span><strong id="opCost">$3.5M</strong></div>
+              <div class="result"><span>Unprepared Exposure</span><strong id="unprepared">$7.0M</strong></div>
+              <div class="result"><span>Prepared Exposure</span><strong id="prepared">$2.0M</strong></div>
+              <div class="result"><span>Avoided Loss</span><strong id="avoided">$5.0M</strong></div>
+              <div class="result"><span>Asymmetry Ratio</span><strong id="ratio">7.7x</strong></div>
+            </div>
+            <p class="metric-copy" style="padding: 0 20px 22px;">This is a directional stress tool, not a private financial model. It shows how assumption movement affects the readiness case.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="stress">
+        <div class="section-head">
+          <div>
+            <p class="section-num">04 · Stress-Test Verdict</p>
+            <h2>The model survived. <span>The ranges moved.</span></h2>
+          </div>
+          <p class="section-note">
+            The original model survives directionally, but the stress test widened the downside bands and identified where the assumptions are most fragile.
+          </p>
+        </div>
+        <div class="stress-grid">
+          <article class="card"><div class="eyebrow">Verdict</div><h3>Conditional Pass</h3><p>The model is directionally sound, but its exact dollar values should be treated as scenario bands, not point forecasts.</p></article>
+          <article class="card"><div class="eyebrow">Fragile Assumption</div><h3>Price upside may not flow cleanly</h3><p>Sales timing, regional basis, feedlot demand, movement restrictions, futures volatility, and drought can reduce or reverse the benefit.</p></article>
+          <article class="card"><div class="eyebrow">Most Underestimated Cost</div><h3>Labor and inspection cadence</h3><p>The cost is not only treatment. It is repeated wound surveillance across cattle, wildlife zones, working animals, and contractor contact points.</p></article>
+          <article class="card"><div class="eyebrow">Multiplier Revision</div><h3>Wildlife exposure may be higher</h3><p>The wildlife-livestock multiplier should be tested at 1.6x-2.4x in severe cases, especially across large acreage and hunting/recreation zones.</p></article>
+          <article class="card"><div class="eyebrow">Brand / Retail</div><h3>Silence is the confidence risk</h3><p>The retail risk is not infection. The retail risk is uncertainty plus silence once public attention touches the King Ranch name.</p></article>
+          <article class="card"><div class="eyebrow">Public Sector</div><h3>Field timing is the dependency</h3><p>USDA posture is serious, but ranch-level readiness cannot depend entirely on trap coverage, sterile fly timing, reporting speed, or county execution.</p></article>
+        </div>
+      </section>
+
+      <section id="revised">
+        <div class="section-head">
+          <div>
+            <p class="section-num">05 · Revised Scenario Table</p>
+            <h2>Stress-tested probability <span>bands.</span></h2>
+          </div>
+          <p class="section-note">
+            Scenario B probability moves up if leadership acts now. Scenario C downside widens because wildlife and brand exposure are harder to bound.
+          </p>
+        </div>
+        <div class="scenario-grid">
+          <article class="card">
+            <div class="eyebrow">Scenario A · 40-50%</div>
+            <h3>Containment Holds</h3>
+            <p><strong style="color: var(--green);">+$2.5M to +$6.0M.</strong> Price upside remains possible, but the benefit is vulnerable to sales timing, basis, demand, and pasture conditions.</p>
+          </article>
+          <article class="card">
+            <div class="eyebrow">Scenario B · 30-40%</div>
+            <h3>Detection, Prepared</h3>
+            <p><strong style="color: var(--amber);">-$2.5M to -$7.0M.</strong> Costly but manageable if early detection, veterinary alignment, crew training, and communications are already live.</p>
+          </article>
+          <article class="card">
+            <div class="eyebrow">Scenario C · 15-25%</div>
+            <h3>Detection, Unprepared</h3>
+            <p><strong style="color: var(--red);">-$12M to -$28M.</strong> Downside widens when late detection, wildlife interface, movement restriction, hunting confidence, and brand exposure compound.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="sensitivity">
+        <div class="section-head">
+          <div>
+            <p class="section-num">06 · Sensitivity Matrix</p>
+            <h2>The variables that <span>move the model.</span></h2>
+          </div>
+          <p class="section-note">
+            These are the pressure points that would change the conclusion, narrow the confidence band, or force a new executive decision.
+          </p>
+        </div>
+        <div class="stress-grid">
+          <article class="card"><div class="eyebrow">Affected Head Count</div><h3>1-3% low · 5-8% base · 12-20% severe</h3><p>Largest direct cost driver. This is the fastest way the model moves from operational issue to enterprise risk.</p></article>
+          <article class="card"><div class="eyebrow">Cost Per Affected Head</div><h3>$200-$400 low · $500-$800 base · $900-$1,500 severe</h3><p>Most likely underestimated due to labor scarcity, repeated inspection, treatment timing, and veterinary constraints.</p></article>
+          <article class="card"><div class="eyebrow">Wildlife Multiplier</div><h3>1.2x low · 1.6x base · 2.4x severe</h3><p>Expands the detection surface beyond cattle and into deer, feral hogs, working animals, carcass detection, and hunting operations.</p></article>
+          <article class="card"><div class="eyebrow">Detection Delay</div><h3>24-48h low · 3-7d base · 10-21d severe</h3><p>Delay is the conversion mechanism. It turns a biological issue into cost surge, mortality risk, and public-confidence exposure.</p></article>
+          <article class="card"><div class="eyebrow">Hunting / Recreation</div><h3>-5% low · -20% base · -50% severe</h3><p>This is the bridge between animal health and brand-confidence economics.</p></article>
+          <article class="card"><div class="eyebrow">Readiness Spend</div><h3>$350K low · $550K base · $1M+ overbuilt</h3><p>Overbuild risk exists, but even the high spend remains materially below surprise-cost exposure.</p></article>
+        </div>
+      </section>
+
+      <section id="prompt">
+        <div class="section-head">
+          <div>
+            <p class="section-num">07 · Reusable Prompt</p>
+            <h2>The stress test <span>instruction layer.</span></h2>
+          </div>
+          <p class="section-note">
+            This is the compressed version of the MBEL stress-test prompt. The full version can live beside this page in the repo.
+          </p>
+        </div>
+        <div class="prompt-box">
+<pre>Run MBEL v1.6 with ESIL and Scenario Instantiation against the New World Screwworm enterprise-risk model.
+
+Do not confirm the original model. Stress test it.
+
+Attack the assumptions across:
+- feeder cattle price upside
+- operational cost per affected head
+- wildlife-livestock interface multiplier
+- USDA/TAHC response dependency
+- brand and retail confidence risk
+- hunting/recreation exposure
+- detection timeline
+- readiness investment ROI
+
+Required output:
+1. MBEL stress-test verdict
+2. assumptions most likely to break
+3. revised scenario probability table
+4. sensitivity matrix
+5. brand / retail exposure read
+6. public-sector dependency read
+7. readiness-cell economic case
+8. Thompson Test
+9. executive red-team questions
+10. final executive line
+
+Calibration rules:
+- label assumptions
+- separate public-signal model from internal audit
+- use confidence ratings
+- state what data would change the conclusion
+- no certainty theater
+
+Final standard:
+What would leadership do differently Monday morning if this model is directionally correct?</pre>
+        </div>
+      </section>
+
+      <section>
+        <div class="cta">
+          <div>
+            <p class="section-num">Executive Translation</p>
+            <h2>Not prediction theater. <span>Decision intelligence.</span></h2>
+            <p>The practical question is not whether this model is perfect. The practical question is whether the cost of readiness is small enough relative to the cost of surprise that leadership should act before confirmation.</p>
+          </div>
+          <a class="btn primary" href="#calculator">Run Assumptions</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <div><b>Epoch Frameworks LLC</b> · Erwin M. McDonald<br>MBEL v1.6 · ESIL · Scenario Instantiation · Public-Signal Enterprise Risk Model</div>
+        <div>Sources: USDA/APHIS · CDC · FDA · Public Signal Model<br>Not An Internal King Ranch Financial Audit</div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const fmtMoney = (n) => {
+      if (Math.abs(n) >= 1_000_000) return '$' + (n / 1_000_000).toFixed(1) + 'M';
+      if (Math.abs(n) >= 1_000) return '$' + Math.round(n / 1000) + 'K';
+      return '$' + Math.round(n);
+    };
+    const fmtNum = (n) => Math.round(n).toLocaleString();
+    const ids = ['herd','affected','cost','mult','brand','ready'];
+    function recalc() {
+      const herd = +document.getElementById('herd').value;
+      const affected = +document.getElementById('affected').value;
+      const cost = +document.getElementById('cost').value;
+      const mult = +document.getElementById('mult').value;
+      const brand = +document.getElementById('brand').value;
+      const ready = +document.getElementById('ready').value;
+      const affectedHead = herd * affected / 100;
+      const opCost = affectedHead * cost * mult;
+      const unprepared = opCost + brand;
+      const prepared = Math.min(unprepared * 0.28 + ready, unprepared * 0.62);
+      const avoided = Math.max(0, unprepared - prepared);
+      const ratio = avoided / ready;
+      document.getElementById('herdVal').textContent = fmtNum(herd);
+      document.getElementById('affectedVal').textContent = affected + '%';
+      document.getElementById('costVal').textContent = '$' + cost;
+      document.getElementById('multVal').textContent = mult.toFixed(1) + 'x';
+      document.getElementById('brandVal').textContent = fmtMoney(brand);
+      document.getElementById('readyVal').textContent = fmtMoney(ready);
+      document.getElementById('affectedHead').textContent = fmtNum(affectedHead);
+      document.getElementById('opCost').textContent = fmtMoney(opCost);
+      document.getElementById('unprepared').textContent = fmtMoney(unprepared);
+      document.getElementById('prepared').textContent = fmtMoney(prepared);
+      document.getElementById('avoided').textContent = fmtMoney(avoided);
+      document.getElementById('ratio').textContent = ratio.toFixed(1) + 'x';
+    }
+    ids.forEach(id => document.getElementById(id).addEventListener('input', recalc));
+    recalc();
+  </script>
+</body>
+</html>
